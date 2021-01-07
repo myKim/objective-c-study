@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B9BEEBAE25A74D4D00DBF2D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BEEBAD25A74D4D00DBF2D6 /* main.m */; };
+		B9BEEBB725A75EBE00DBF2D6 /* JSONTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B9BEEBB625A75EBE00DBF2D6 /* JSONTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,9 @@
 /* Begin PBXFileReference section */
 		B9BEEBAA25A74D4D00DBF2D6 /* objective-c-example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "objective-c-example"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9BEEBAD25A74D4D00DBF2D6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B9BEEBB525A75EBE00DBF2D6 /* JSONTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONTest.h; sourceTree = "<group>"; };
+		B9BEEBB625A75EBE00DBF2D6 /* JSONTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSONTest.m; sourceTree = "<group>"; };
+		B9BEEBBB25A75F5800DBF2D6 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +61,20 @@
 		B9BEEBAC25A74D4D00DBF2D6 /* objective-c-example */ = {
 			isa = PBXGroup;
 			children = (
+				B9BEEBB925A75ECA00DBF2D6 /* Test */,
 				B9BEEBAD25A74D4D00DBF2D6 /* main.m */,
 			);
 			path = "objective-c-example";
+			sourceTree = "<group>";
+		};
+		B9BEEBB925A75ECA00DBF2D6 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				B9BEEBBB25A75F5800DBF2D6 /* Test.h */,
+				B9BEEBB525A75EBE00DBF2D6 /* JSONTest.h */,
+				B9BEEBB625A75EBE00DBF2D6 /* JSONTest.m */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9BEEBAE25A74D4D00DBF2D6 /* main.m in Sources */,
+				B9BEEBB725A75EBE00DBF2D6 /* JSONTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
