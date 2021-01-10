@@ -15,10 +15,12 @@
     [self test1];
     
     // options 파라미터
-    [self test2]; // NSJSONWritingFragmentsAllowed
-    [self test3]; // NSJSONWritingPrettyPrinted
-    [self test4]; // NSJSONWritingSortedKeys
-    [self test5]; // NSJSONWritingWithoutEscapingSlashes
+    [self test2]; // kNilOptions = 0
+    [self test3]; // NSJSONWritingFragmentsAllowed
+    [self test4]; // NSJSONWritingPrettyPrinted
+    [self test5]; // NSJSONWritingSortedKeys
+    [self test6]; // NSJSONWritingWithoutEscapingSlashes
+    
 }
 
 #pragma mark - Internal
@@ -37,24 +39,45 @@
     NSArray *array = @[@"1", @"2", @"2"];
     NSDictionary *dictionary = @{@"key1":@"value1", @"key2":@"value2"};
     
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                       options:0
-                                                         error:nil];
+    NSLog(@"===== Test 1 Start =====");
+    NSLog(@"isValidJSONObject(Number) : %@",     [NSJSONSerialization isValidJSONObject:number] ? @"YES" : @"NO");
+    NSLog(@"isValidJSONObject(String) : %@",     [NSJSONSerialization isValidJSONObject:string] ? @"YES" : @"NO");
+    NSLog(@"isValidJSONObject(Null) : %@",       [NSJSONSerialization isValidJSONObject:null] ? @"YES" : @"NO");
+    NSLog(@"isValidJSONObject(Dictionary) : %@", [NSJSONSerialization isValidJSONObject:dictionary] ? @"YES" : @"NO");
+    NSLog(@"isValidJSONObject(Array) : %@",      [NSJSONSerialization isValidJSONObject:array] ? @"YES" : @"NO");
+    NSLog(@"===== Test 1 End =====");
 }
 
 // options 파라미터
 - (void)test2
 {
-    // NSJSONWritingFragmentsAllowed
+    // kNilOptions = 0
     NSDictionary *dictionary = @{@"key1":@"value1", @"key2":@"value2", @"key3":@[@1, @2, @3]};
+    
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
-                                                       options:NSJSONWritingFragmentsAllowed
+                                                       options:kNilOptions // 0
                                                          error:nil];
     
-    NSLog(@"\noptions(NSJSONWritingFragmentsAllowed) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 2 Start =====");
+    NSLog(@"\noptions(0) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 2 End =====");
 }
 
 - (void)test3
+{
+    // NSJSONWritingFragmentsAllowed
+    NSString *string = @"string value";
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:string
+                                                       options:NSJSONWritingFragmentsAllowed // 0을 넣을 경우 크래시 발생
+                                                         error:nil];
+    
+    NSLog(@"===== Test 3 Start =====");
+    NSLog(@"\noptions(NSJSONReadingAllowFragments) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 3 End =====");
+}
+
+- (void)test4
 {
     // NSJSONWritingPrettyPrinted
     NSDictionary *dictionary = @{@"key1":@"value1", @"key2":@"value2", @"key3":@[@1, @2, @3]};
@@ -62,10 +85,12 @@
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:nil];
     
+    NSLog(@"===== Test 4 Start =====");
     NSLog(@"\noptions(NSJSONWritingPrettyPrinted) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 4 End =====");
 }
 
-- (void)test4
+- (void)test5
 {
     // NSJSONWritingSortedKeys
     NSDictionary *dictionary = @{@"C":@"value1", @"A":@"value2", @"B":@"value3"};
@@ -73,10 +98,12 @@
                                                        options:NSJSONWritingSortedKeys
                                                          error:nil];
     
+    NSLog(@"===== Test 5 Start =====");
     NSLog(@"\noptions(NSJSONWritingSortedKeys) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 5 End =====");
 }
 
-- (void)test5
+- (void)test6
 {
     // NSJSONWritingWithoutEscapingSlashes
     NSDictionary *dictionary = @{@"url":@"https://google.com"};
@@ -84,7 +111,10 @@
                                                        options:NSJSONWritingWithoutEscapingSlashes
                                                          error:nil];
     
+    NSLog(@"===== Test 6 Start =====");
     NSLog(@"\noptions(NSJSONWritingWithoutEscapingSlashes) : \n%@", [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]);
+    NSLog(@"===== Test 6 End =====");
+}
 }
 
 @end
